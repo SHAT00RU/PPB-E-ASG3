@@ -1,208 +1,41 @@
-My First Flutter App
+# My First App 📱
 
-A simple Flutter application that displays an image from the internet, a question text, and three selectable categories represented by icons.
+Sebuah aplikasi Flutter sederhana yang dibangun untuk mendemonstrasikan penggunaan dan penyusunan basic widgets dalam Flutter. Aplikasi ini menampilkan antarmuka statis berupa gambar, teks, dan beberapa ikon kategori yang disusun secara rapi.
 
-This project demonstrates the basic usage of Flutter layout widgets such as Scaffold, AppBar, Container, Column, Row, Image, Icon, and Text.
+## 🚀 Gambaran Proyek
 
-Preview
+Proyek ini adalah contoh implementasi antarmuka pengguna (UI) dasar di Flutter. Struktur kodenya berfokus pada penggunaan layout vertikal dan horizontal, serta kustomisasi ruang (padding) dan warna menggunakan _hex codes_.
 
-The application interface contains:
+## 🧩 Penjelasan Struktur Widget
 
-An AppBar with the title
+Berikut adalah penjelasan untuk setiap widget yang digunakan dalam *source code* aplikasi ini:
 
-An image loaded from the internet
+### 1. Root & Layout Dasar
+* **`MaterialApp`**: Widget utama yang membungkus seluruh aplikasi. Widget ini mengatur tema dasar aplikasi agar mengikuti standar Material Design. Di sini juga disematkan `debugShowCheckedModeBanner: true` (yang biasanya di-set `false` untuk produksi) dan menentukan `HomePage` sebagai halaman awal.
+* **`Scaffold`**: Menyediakan kerangka visual dasar bergaya Material untuk halaman `HomePage`. Di sini, widget ini digunakan untuk mengatur warna latar belakang halaman menjadi abu-abu terang (`Colors.grey[200]`).
+* **`AppBar`**: Bagian header atau bilah aplikasi di bagian atas layar. Menampilkan teks judul "My first app" di tengah (`centerTitle: true`) dan menggunakan warna latar khusus (`Color(0xFFE9CC7A)`).
 
-A text question
+### 2. Layout & Spacing
+* **`Padding`**: Membungkus seluruh konten body untuk memberikan jarak/ruang kosong sebesar 16 piksel di seluruh sisi luarnya (`EdgeInsets.all(16)`).
+* **`Column`**: Widget layout yang menyusun anak-anaknya (*children*) secara vertikal dari atas ke bawah. Ini adalah tulang punggung dari struktur UI di halaman ini.
+* **`Row`**: Widget layout yang menyusun anak-anaknya secara horizontal dari kiri ke kanan. Digunakan pada bagian bawah layar untuk menyejajarkan tiga ikon (Food, Scenery, People) dengan jarak yang merata (`mainAxisAlignment: MainAxisAlignment.spaceEvenly`).
+* **`SizedBox`**: Digunakan secara khusus untuk memberikan jarak kosong (margin) vertikal sebesar 20 piksel antar elemen di dalam `Column`.
 
-Three icon categories:
+### 3. Container & Konten Visual
+* **`Container`**: Widget serbaguna yang sangat sering digunakan dalam aplikasi ini untuk membuat kotak dengan properti desain tertentu:
+    * **Container Pertama (Gambar)**: Memiliki warna latar biru muda (`Color(0xFFAED6DB)`) dan *padding* internal 20 piksel, berfungsi sebagai bingkai untuk gambar.
+    * **Container Kedua (Teks)**: Memiliki lebar penuh (`width: double.infinity`), warna latar merah muda (`Color(0xFFE6A8B8)`), dan *padding* 15 piksel untuk membungkus teks pertanyaan.
+    * **Container Ketiga (Ikon)**: Memiliki warna latar kuning keemasan (`Color(0xFFE9CC7A)`) dan *padding* vertikal 20 piksel untuk membungkus kumpulan `Row` ikon.
+* **`Image.network`**: Menampilkan gambar yang diambil secara langsung dari internet (URL `picsum.photos`). Diatur agar memiliki tinggi 200 piksel, lebar mengikuti layar (`double.infinity`), dan dipotong secara proporsional agar pas dengan kotaknya (`fit: BoxFit.cover`).
+* **`Text`**: Menampilkan string teks di layar. Digunakan di `AppBar`, pertanyaan di tengah layar, dan label di bawah masing-masing ikon.
+* **`Icon`**: Menampilkan gambar ikon berbasis vektor dari bawaan Material Design Flutter (`Icons.restaurant`, `Icons.landscape`, `Icons.person`).
 
-Food
+---
 
-Scenery
+## 🛠️ Cara Menjalankan Aplikasi
 
-People
-
-Layout structure:
-
-AppBar
----------------------
-
-[ Image ]
-
-What image is that?
-
-Food      Scenery      People
-(icon)     (icon)       (icon)
-Project Structure
-lib/
- └── main.dart
-
-All application code is written inside main.dart.
-
-Widgets Explanation
-main()
-void main() {
-  runApp(MyApp());
-}
-
-This is the entry point of the Flutter application.
-
-runApp() starts the Flutter app and loads the root widget MyApp.
-
-MyApp Widget
-class MyApp extends StatelessWidget
-
-MyApp is a StatelessWidget which means the UI does not change dynamically.
-
-It returns a MaterialApp widget.
-
-MaterialApp
-MaterialApp(
-  debugShowCheckedModeBanner: true,
-  home: HomePage(),
-)
-
-MaterialApp provides the basic structure for a Material Design application.
-
-Properties used:
-
-Property	Description
-debugShowCheckedModeBanner	Shows DEBUG banner
-home	The first page of the application
-HomePage Widget
-class HomePage extends StatelessWidget
-
-HomePage is the main screen of the application.
-
-Scaffold
-Scaffold(
-  backgroundColor: Colors.grey[200]
-)
-
-Scaffold provides the main layout structure of the page.
-
-It typically contains:
-
-AppBar
-
-Body
-
-Floating buttons
-
-Navigation drawers
-
-AppBar
-AppBar(
-  title: Text("My first app"),
-  backgroundColor: Color(0xFFE9CC7A),
-  centerTitle: true,
-)
-
-The AppBar displays the title at the top of the application.
-
-Property	Function
-title	Displays the title text
-backgroundColor	Sets the AppBar color
-centerTitle	Centers the title
-Padding
-Padding(
-  padding: EdgeInsets.all(16)
-)
-
-Padding adds spacing between the screen edge and the content.
-
-EdgeInsets.all(16) means 16 pixels on all sides.
-
-Column
-Column(
-  children: []
-)
-
-Column arranges widgets vertically from top to bottom.
-
-Container
-
-Example:
-
-Container(
-  padding: EdgeInsets.all(20),
-  color: Color(0xFFAED6DB),
-)
-
-Container is a flexible widget used for:
-
-Adding padding
-
-Setting background color
-
-Wrapping other widgets
-
-Image.network
-Image.network(
-  "https://picsum.photos/400",
-  height: 200,
-  width: double.infinity,
-  fit: BoxFit.cover,
-)
-
-Displays an image from the internet.
-
-Property	Function
-height	Image height
-width	Image width
-fit	How the image fills its container
-
-BoxFit.cover makes the image fill the container proportionally.
-
-SizedBox
-SizedBox(height: 20)
-
-Used to create vertical space between widgets.
-
-Text
-Text(
-  "What image is that?",
-  style: TextStyle(fontSize: 16)
-)
-
-Displays text on the screen.
-
-TextStyle controls text appearance such as font size.
-
-Row
-Row(
-  mainAxisAlignment: MainAxisAlignment.spaceEvenly
-)
-
-Row arranges widgets horizontally.
-
-spaceEvenly distributes space evenly between elements.
-
-Icon
-
-Example:
-
-Icon(Icons.restaurant)
-
-Displays icons from the Material Icons library.
-
-Icons used in this app:
-
-Icon	Meaning
-Icons.restaurant	Food
-Icons.landscape	Scenery
-Icons.person	People
-Category Layout
-
-Each category is built using a Column containing an icon and text.
-
-Example:
-
-Column(
-  children: [
-    Icon(Icons.restaurant),
-    Text("Food")
-  ],
-)
-
-This places the icon above the label text.
+1. Pastikan Flutter SDK sudah terpasang di komputermu.
+2. Clone repositori ini.
+3. Buka terminal dan arahkan ke direktori proyek.
+4. Jalankan perintah `flutter pub get` untuk memastikan semua *dependencies* siap.
+5. Jalankan `flutter run` untuk membuka aplikasi di emulator atau perangkat fisik.
